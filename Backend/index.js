@@ -1,3 +1,4 @@
+import path from "path";
 import express from 'express';
 import cors from 'cors';
 import { PORT, mongoDBURL } from './config.js';  
@@ -11,6 +12,12 @@ app.use('/uploads', express.static('uploads'));
 // middleware for handling CORS POLICY
 //  Allow All origin with DEfault of cors
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 
 app.get('/', (request, response) => {

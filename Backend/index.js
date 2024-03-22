@@ -15,7 +15,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Middleware for handling CORS policy
 app.use(cors());
-
+const __dirname = path.resolve();
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 

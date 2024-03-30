@@ -18,7 +18,10 @@ app.use(cors());
 const __dirname = path.resolve();
 // Serve frontend static files
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
-const frontendDistDir = path.join(__dirname, "../frontend/dist");
+// const frontendDistDir = path.join(__dirname, "../frontend/dist");
+// app.use(express.static(frontendDistDir));
+
+const frontendDistDir = '/opt/render/project/frontend/dist'; // Update this path to match the actual path on the deployment environment
 app.use(express.static(frontendDistDir));
 console.log("Frontend build directory:", frontendDistDir)
 // API routes

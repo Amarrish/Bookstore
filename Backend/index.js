@@ -17,16 +17,19 @@ app.use('/uploads', express.static('uploads'));
 app.use(cors());
 const __dirname = path.resolve();
 // Serve frontend static files
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
+// app.use(express.static(path.join(__dirname, "/frontend/dist")));
+const frontendDistDir = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendDistDir));
 // API routes
 app.use('/books', booksRoute);
 
 // Catch-all route to serve frontend's index.html
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+// });
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(frontendDistDir, "index.html"));
 });
-
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -34,7 +37,18 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB and start server
-mongoose.connect(mongoDBURL)
+// mongoose.connect(mongoDBURL)
+//     .then(() => {
+//         console.log('Connected to MongoDB');
+//         app.listen(PORT, () => {
+//             console.log(`Server is listening on port ${PORT}`);
+//         });
+//     })
+//     .catch((error) => {
+//         console.error('Error connecting to MongoDB:', error);
+//     });
+
+mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(PORT, () => {
@@ -44,6 +58,26 @@ mongoose.connect(mongoDBURL)
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import path from "path";

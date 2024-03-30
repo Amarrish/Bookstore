@@ -20,6 +20,7 @@ const __dirname = path.resolve();
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
 const frontendDistDir = path.join(__dirname, "../frontend/dist");
 app.use(express.static(frontendDistDir));
+console.log("Frontend build directory:", frontendDistDir)
 // API routes
 app.use('/books', booksRoute);
 
@@ -48,7 +49,7 @@ app.use((err, req, res, next) => {
 //         console.error('Error connecting to MongoDB:', error);
 //     });
 
-mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDBURL)
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(PORT, () => {

@@ -11,7 +11,7 @@ const ShowBook = () => {
   
     useEffect(() => {
       setLoading(true);
-      axios.get(`http://localhost:5555/books/${id}`)
+      axios.get(`https://bookstore-y5rj.onrender.com/books/${id}`)
         .then((response) => {
           setBook(response.data);
           setLoading(false);
@@ -61,7 +61,7 @@ const ShowBook = () => {
           {book.image && (
             <div className='my-4'>
               <span className='text-xl mr-4 text-gray-500'>Book Image</span>
-              <img src={`http://localhost:5555/${book.image}`} style={{ width: '350px', height: '300px' }} alt='Book' className='max-w-full' />
+              <img src={`https://bookstore-y5rj.onrender.com/${book.image}`} style={{ width: '350px', height: '300px' }} alt='Book' className='max-w-full' />
             </div>
           )}
         </div>

@@ -33,7 +33,7 @@ const CreateBooks = () => {
     formData.append('image', image);
 
     setLoading(true);
-    axios.post('http://localhost:5555/books', formData, {
+    axios.post('https://bookstore-y5rj.onrender.com/books', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

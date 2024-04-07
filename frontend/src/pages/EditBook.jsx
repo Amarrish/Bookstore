@@ -19,7 +19,7 @@ const EditBook = () => {
   
     useEffect(() => {
       setLoading(true);
-      axios.get(`http://localhost:5555/books/${id}`)
+      axios.get(`https://bookstore-y5rj.onrender.com/books/${id}`)
         .then((response) => {
           setAuthor(response.data.author);
           setPublishYear(response.data.publishYear);
@@ -51,7 +51,7 @@ const EditBook = () => {
       formData.append('image', image);
   
       setLoading(true);
-      axios.put(`http://localhost:5555/books/${id}`, formData, {
+      axios.put(`https://bookstore-y5rj.onrender.com/books/${id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
